@@ -1,0 +1,28 @@
+<h1>{{ title }}</h1>
+
+<mat-progress-spinner
+  *ngIf="isLoading$ | async; else content"
+  class="spinner"
+  [color]="'primary'"
+  [mode]="'indeterminate'"
+>
+</mat-progress-spinner>
+
+<ng-template #content>
+  <div class="container" *ngIf="users$ | async as users">
+    <div class="users" [@listAnimation]="users.length">
+      <app-user *ngFor="let user of users" [user]="user"></app-user>
+    </div>
+
+    <mat-paginator
+      class="paginator"
+      [pageSize]="pageSize"
+      [length]="pageLength"
+      [hidePageSize]="true"
+      [pageIndex]="pageIndex$ | async"
+      aria-label="Select page"
+      (page)="handlePageEvent($event)"
+    >
+    </mat-paginator>
+  </div>
+</ng-template>

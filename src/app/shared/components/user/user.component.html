@@ -1,0 +1,15 @@
+<mat-card *ngIf="user" class="user">
+  <mat-card-header class="user__header">
+    <img
+      mat-card-avatar
+      class="avatar"
+      [src]="user.picture.medium"
+      alt="User Avatar"
+      loading="lazy"
+      (click)="copyEmail(user.email)"
+    />
+
+    <mat-card-title>{{ user | userFullName }}</mat-card-title>
+    <mat-card-subtitle>{{ user | userLocation }}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
